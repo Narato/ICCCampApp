@@ -6,3 +6,17 @@
   text-align: center;
   line-height: 50px
 }
+
+.workshop {
+  width:100%;
+  min-height: 50px;
+  background: #999999;
+  margin: 10px;
+  text-align: center;
+  line-height: 50px
+
+  div {
+    margin: 5px;
+    text-align: center;
+  }
+}
