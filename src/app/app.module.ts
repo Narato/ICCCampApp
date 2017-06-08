@@ -1,3 +1,5 @@
+import {HttpModule, ConnectionBackend,  Http} from '@angular/http';
+import {TimeTableService} from './time-table.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -18,9 +20,10 @@ import { CredentialsComponent } from './credentials/credentials.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [TimeTableService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
