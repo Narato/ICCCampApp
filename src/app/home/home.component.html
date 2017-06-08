@@ -1,14 +1,21 @@
-<ul>
-  <li>
-    Static1
-  </li>
-  <li>
-    Static2
-  </li>
-  <li>
-    Static3
-  </li>
-  <li>
-    Static4
-  </li>
-</ul>
+<div>
+  Static1
+</div>
+<div>
+  Static2
+</div>
+<div>
+  Static3
+</div>
+<div>
+  Static4
+</div>
+<div [routerLink]="['/myActivities']">
+  <a [routerLink]="['/myActivities']">My activities</a>
+</div>
+<div [routerLink]="['/myLeisureActivities']">
+  <a [routerLink]="['/myLeisureActivities']">My leisure activities</a>
+</div>
+<div [routerLink]="['/credentials']">
+  <a [routerLink]="['/credentials']">Credentials</a>
+</div>
