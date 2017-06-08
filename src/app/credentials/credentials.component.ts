@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-credentials',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CredentialsComponent implements OnInit {
 
-  constructor() { }
+  username: string = '';
+  password: string = '';
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    this.username = localStorage.getItem('icc_campapp_username');
+    this.password = localStorage.getItem('icc_campapp_password');
   }
 
+  saveCredentials(): void {
+    localStorage.setItem('icc_campapp_username', this.username);
+    localStorage.setItem('icc_campapp_password', this.password);
+    this.router.navigate(['/']);  }
 }
