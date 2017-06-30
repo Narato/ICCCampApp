@@ -1,40 +1,42 @@
 <md-toolbar color="primary">
-    <div fxLayout="row" fxLayoutAlign="space-between">
+    <div fxLayout="row wrap" fxLayoutAlign="space-between">
       <h1>Homepage ICC-Camp</h1>
-      <a [routerLink]="['/credentials']">Login to see your activities</a>
+      <a [routerLink]="['/credentials']">Login</a>
     </div>
 </md-toolbar>
 
-<nav class="container" fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign="center">
+<main class="container">
+    <md-card [routerLink]="['/myActivities']" class="actionButton">
+      <a [routerLink]="['/myActivities']">My activities</a>
+    </md-card>
 
-  <md-card fxFlex="33%" [routerLink]="['/myActivities']" class="actionButton">
-    <a [routerLink]="['/myActivities']">My activities</a>
-  </md-card>
+    <md-card [routerLink]="['/myLeisureActivities']" class="actionButton">
+      <a [routerLink]="['/myLeisureActivities']">My leisure activities</a>
+    </md-card>
 
-  <md-card fxFlex="33%" [routerLink]="['/myLeisureActivities']" class="actionButton">
-    <a [routerLink]="['/myLeisureActivities']">My leisure activities</a>
-  </md-card>
+    <md-card class="actionButton">
+      Static 1
+    </md-card>
 
-  <md-card fxFlex="33%" class="actionButton">
-    Static 1
-  </md-card>
+    <md-card class="actionButton">
+      Static 2
+    </md-card>
 
-  <md-card fxFlex="33%" class="actionButton">
-    Static 2
-  </md-card>
+    <md-card class="actionButton">
+      Static 3
+    </md-card>
 
-  <md-card fxFlex="33%" class="actionButton">
-    Static 3
-  </md-card>
-
-  <md-card fxFlex="33%" class="actionButton">
-    Static 4
-  </md-card>
-
+    <md-card class="actionButton">
+      Static 4
+    </md-card>
 
 
 
-</nav>
+
+
+
+
+</main>
 
 <!--
 <div class="actionButton">
