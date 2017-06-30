@@ -18,13 +18,13 @@ export class TimeTableService {
 
         var toMap = responseData.json();
 
-        
+
         let wrapper = new TimeTableWrapper();
         wrapper.timetable = new Array<TimeTable>();
         toMap.timetable.forEach(timetable => {
           wrapper.timetable.push(this.mapTimeTable(timetable));
         });
-        
+
         wrapper.participantFirstName = toMap.participant_first_name[0].value;
         wrapper.participantSurname = toMap.participant_surname[0].value;
 
@@ -40,12 +40,12 @@ export class TimeTableService {
   private mapTimeTable(obj: any): TimeTable {
     var timetable = new TimeTable();
     timetable.date = obj.date;
+    timetable.title = obj.title;
     timetable.endTime = obj.end_time;
     timetable.description = obj.description[0].value;
     timetable.roomDescription = obj.room_description[0].value;
     timetable.roomName = obj.roomName;
     timetable.startTime = obj.start_time;
-    timetable.roomName = obj.roomName;
     timetable.type = obj.type;
     timetable.wsCotutor = obj.ws_cotutor;
     timetable.wsLeader = obj.ws_leader;

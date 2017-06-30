@@ -1,17 +1,32 @@
-<div class="workshop" *ngFor='let timetable of data?.timetable'>
-  <div>
-    {{timetable.date}}
-  </div>
-  <div>
-    {{timetable.startTime}} - {{timetable.endTime}}
-  </div>
-  <div>
-    {{timetable.description}}
-  </div>
-  <div>
-    Room : {{timetable.roomDescription}}
-  </div>
-</div>
-<div class="actionButton" [routerLink]="['/']">
-  <a [routerLink]="['/']">Back</a>
-</div>
+<md-toolbar color="primary">
+  <header fxLayout="row" fxLayoutAlign="space-between">
+    <h1>My activities</h1>
+    <a [routerLink]="['/']"> Back to homepage</a>
+  </header>
+</md-toolbar>
+
+<main class="container">
+  <md-tab-group>
+    <md-tab *ngFor="let item of dates">
+      <ng-template md-tab-label>
+        {{item}}
+      </ng-template>
+
+      <section *ngFor="let timetable of data?.timetable">
+        <div *ngIf="item === timetable.date && timetable.type === 'workshop'">
+          <h2>{{timetable.title }}</h2>
+          <p>Starttime: <time> {{timetable.startTime}} </time></p>
+          <p>Endtime: <time> {{timetable.endTime}} </time></p>
+          <p>{{timetable.description}}</p>
+
+          <h3>Workshop information</h3>
+          <ul>
+            <li *ngIf="timetable.roomName">Room: {{timetable.roomName}}</li>
+            <li *ngIf="timetable.roomDescription">RoomDescription: {{timetable.roomDescription}}</li>
+          </ul>
+
+        </div>
+      </section>
+    </md-tab>
+  </md-tab-group>
+</main>

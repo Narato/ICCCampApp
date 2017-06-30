@@ -1,8 +1,17 @@
 .actionButton {
-  width:100%;
-  min-height: 50px;
-  background: #dddddd;
-  margin: 10px;
+  // width: calc((100%/2) - 2rem);
+  // min-height: 50px;
+  // // background: #dddddd;
+  // // margin: 10px;
+  // text-align: center;
+  // line-height: 50px
+  // display: inline-block;
+  // margin: 1rem;
+  // width: calc((100%/2) - 7rem);
+  // min-height: 5rem;
+  //
+  // line-height: 5rem;
+  // text-align: center;
+  margin: .5rem;
   text-align: center;
-  line-height: 50px
 }
