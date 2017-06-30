@@ -12,7 +12,7 @@
         {{item}}
       </ng-template>
 
-      <section *ngFor="let timetable of data?.timetable">
+      <section class="section-item" *ngFor="let timetable of data?.timetable">
         <div *ngIf="item === timetable.date && timetable.type === 'workshop'">
           <h2>{{timetable.title }}</h2>
           <p>Starttime: <time> {{timetable.startTime}} </time></p>
