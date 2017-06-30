@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/* Box model
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+*:before, *:after {
+  box-sizing: border-box;
+}
+
+
+/* Html & body
+   ========================================================================== */
+body {
+ margin: 0;
+}
+
+
+/* Container
+   ========================================================================== */
+.container {
+  max-width: $container-width;
+  margin: 1rem auto;
+
+  @media(min-width: $screen-xs) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  @media(min-width: $screen-lg) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+//
+// .margin--none {
+//   margin: 0;
+// }
+//
+// .margin-top {
+//   margin-top: 2rem;
+// }
+//
+// .margin-bottom {
+//   margin-bottom: 2rem;
+// }
+//
+// .margin--bottom--small {
+//   margin-bottom: 1.5rem;
+// }
+//
+// .margin-top--negative {
+//   margin-top: -2rem;
+// }
+//
+// .margin-top--none {
+//   margin-top: 0;
+// }
+//
+// .margin-top-bottom {
+//   margin: 1.5rem 0;
+// }
+//
+// .margin-top--large {
+//   margin: 0;
+//   margin-top: 4rem;
+// }
+//
+// .padding--none {
+//   padding: 0;
+// }

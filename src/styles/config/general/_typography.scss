@@ -1,0 +1,46 @@
+/* ==========================================================================
+   Typography
+
+   This file is exclusively intended for setting up variables
+   Never add styles directly to this file
+   ========================================================================== */
+
+
+/* Line-height
+   ========================================================================== */
+$line-height--base:         2.5rem;       // 25px
+
+$line-height--smallest:     1.5rem;       // 15px
+$line-height--small:        1.8rem;       // 18px
+$line-height--medium:       3rem;         // 30px
+$line-height--big:          4rem;         // 40px
+$line-height--bigger:       6rem;         // 60px
+
+
+
+/* Text sizes
+   ========================================================================== */
+$text-size--base:               62.5%;           // 10px
+$text-size--base-rem:           1rem;
+
+$text-size--normal:             1.6rem;         // 16px
+
+$text-size--smallest:           1.2rem;         // 12px
+$text-size--smaller:            1.4rem;         // 14px
+$text-size--small:              1.5rem;         // 15px
+
+$text-size--big:                1.8rem;         // 18px
+$text-size--bigger:             2rem;           // 20px
+$text-size--mega:              3.6rem;         // 36px
+
+
+/* Headings
+   ========================================================================== */
+$font-size-h1:          $text-size--mega;         // 20px
+$font-size-h2:          $text-size--bigger;       // 18px
+$font-size-h3:          $text-size--big;          // 18px
+$font-size-h4:          $text-size--normal;       // 16px
+$font-size-h5:          $text-size--normal;       // 16px
+$font-size-h6:          $text-size--normal;       // 16px
+
+$line-height-h1:        $line-height--base;

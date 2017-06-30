@@ -1,0 +1,119 @@
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+/* General
+   ========================================================================== */
+button {
+  border: 0 !important;
+}
+
+.btn {
+  display: inline-block;
+  margin: 0 .5rem;
+  padding: .7rem 1.5rem;
+
+  font: {
+    family: $font-family-base;
+    weight: 500;
+    size: $text-size--normal;
+  }
+  line-height: $line-height--base;
+  text-decoration: none;
+
+  background: none;
+  border: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+
+  transition: background .3s ease, color .3s ease;
+
+  &:hover, &:focus {
+    text-decoration: none;
+  }
+
+  &:active, &:focus {
+    outline: 0;
+  }
+
+  &[disabled], fieldset[disabled] & {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: .65;
+  }
+}
+
+/* Types
+   ========================================================================== */
+.btn--primary {
+  color: $white;
+
+  background: $brand-primary;
+
+  &:hover, &:focus {
+    color: $white;
+
+    background: darken($brand-primary, 5%);
+  }
+
+  &[disabled], fieldset[disabled] & {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: $white;
+    background: $brand-secondary;
+  }
+}
+
+.btn--secondary {
+  color: $text-color;
+
+  background: $brand-secondary;
+
+  &:hover, &:focus {
+    color: $white;
+
+    background: darken($brand-secondary, 5%);
+  }
+
+  &[disabled], fieldset[disabled] & {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: $white;
+    background: $brand-secondary;
+  }
+}
+
+.btn--tertiary {
+  padding: .7rem 0;
+  color: $brand-primary;
+
+  &:hover, &:focus {
+    color: darken($brand-primary, 15%);
+  }
+
+  &[disabled], fieldset[disabled] & {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: lighten($brand-secondary, 5%);
+  }
+}
+
+.btn--tertiary--plain {
+  padding: .7rem 0;
+  color: $brand-secondary;
+
+  &:hover, &:focus {
+    color: darken($brand-secondary, 15%);
+  }
+
+  &[disabled], fieldset[disabled] & {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: lighten($brand-secondary, 5%);
+  }
+}

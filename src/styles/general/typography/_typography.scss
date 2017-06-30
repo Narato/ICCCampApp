@@ -1,0 +1,143 @@
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/* General
+   ========================================================================== */
+* {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+html {
+ font-size: $text-size--base;
+}
+
+body {
+ font-size: $text-size--normal;
+ color: $text-color;
+}
+
+p {
+  margin: 1rem 0;
+
+  @media (min-width: $screen-md-min) {
+    margin: 1.3rem 0;
+  }
+}
+
+p {
+  + h1, + h2, + h3, + h4, + h5, + h6 {
+    margin-top: 3rem;
+  }
+}
+
+strong {
+  font-family: $font-family-base;
+  font-weight: 500;
+  color: $text-color;
+}
+
+hr {
+  max-width: $screen-lg;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* Specials
+   ========================================================================== */
+// .text--intro {
+//   font-size: $text-size--bigger;
+//   line-height: $line-height--medium;
+//   font-family: $font-family-base;
+//   font-weight: 400;
+//
+//   @media (min-width: $screen-sm-min) {
+//     margin: 2rem 0;
+//   }
+//
+//   > p {
+//     margin-top: 0;
+//   }
+// }
+// .text--block {
+//   display: block;
+// }
+//
+// .text--inline-block {
+//   display: inline-block;
+// }
+//
+// .text--line-height-1 {
+//   line-height: 1;
+// }
+//
+// .text-width--equal {
+//   width: calc(50% - 1rem);
+// }
+//
+// .text--align-middle {
+//   vertical-align: middle;
+// }
+//
+// .text--strong {
+//   font-weight: 700;
+// }
+//
+// .text--uppercase {
+//   text-transform: uppercase;
+// }
+//
+// .text--small-caps {
+//   font-variant: small-caps;
+// }
+//
+// .text--large {
+//   font-size: $text-size--mega;
+// }
+//
+// .text--small {
+//   font-size: $text-size--base-rem;
+// }
+//
+// .text--normal {
+//   font-size: $text-size--smallest;
+// }
+//
+// .text--font-style--none {
+//   font-style: normal;
+// }
+//
+// .text--no-margin {
+//   margin: 0;
+// }
+//
+// .text--no-margin--bottom {
+//   margin-bottom: 0;
+// }
+//
+// .text--no-top-margin {
+//   margin-top: 0;
+// }
+//
+// .text--center {
+//   text-align: center;
+// }
+//
+// .text--right {
+//   text-align: right;
+// }
+//
+// .text--left {
+//   text-align: left;
+// }
+//
+// .text--final {
+//   color: $valid;
+// }
+//
+// .text--light {
+//   color: $brand-secondary;
+// }

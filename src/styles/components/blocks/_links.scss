@@ -1,0 +1,23 @@
+/* ==========================================================================
+   Links
+   ========================================================================== */
+/* Shared
+   ========================================================================== */
+a {
+  font-family: $font-family-base;
+  color: $text-color;
+  border-bottom: 0.1rem solid $text-color;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:focus,
+  &:hover {
+    border-color: transparent;
+  }
+}
+
+md-toolbar div a {
+  color: white;
+  border-color: white;
+}

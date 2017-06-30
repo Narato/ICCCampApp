@@ -1,0 +1,102 @@
+/* ==========================================================================
+   Colors
+
+   This file is exclusively intended for setting up variables
+   Never add styles directly to this file
+   ========================================================================== */
+
+$black:       #111111;
+$white:       #ffffff;
+
+$red:         		  rgb(229, 37, 58);
+$red--dark:         rgb(189, 8, 28);
+
+$cyan:             #3F51B5;
+
+$gray--medium:  	  rgb(134, 136, 140);
+$gray--dark:		    rgb(53, 53, 53);
+$gray--light:		    rgb(193, 193, 193);
+$gray--lightest:	  rgb(204, 204, 204);
+
+$text-color:            $gray--dark;
+$text-color--secondary:	$gray--medium;
+$text-color--tertiary:	$gray--light;
+
+$brand-primary:        $red--dark;
+
+$brand-secondary:       $gray--lightest;
+
+$warn:                  $red;
+
+$valid:                 $cyan;
+
+/* Material Palettes
+   ========================================================================== */
+   $black-87-opacity: rgba(black, 0.87);
+   $white-87-opacity: rgba(white, 0.87);
+
+   $md-custom-primary: (
+      50: #f74d60,
+      100: #f6354a,
+      200: #f51c34,
+      300: #ee0a23,
+      400: #d50920,
+      500: rgb(189, 8, 28),
+      600: #a40718,
+      700: #8c0615,
+      800: #740511,
+      900: #5b040e,
+      A100: #f86576,
+      A200: #fa7e8c,
+      A400: #fb96a1,
+      A700: #43030a,
+        contrast: (
+          50: $black-87-opacity,
+          100: $black-87-opacity,
+          200: $black-87-opacity,
+          300: $black-87-opacity,
+          400: $black-87-opacity,
+          500: white,
+          600: white,
+          700: white,
+          800: $white-87-opacity,
+          900: $white-87-opacity,
+          A100: $black-87-opacity,
+          A200: white,
+          A400: white,
+          A700: white,
+        )
+    );
+
+    $md-custom-secondary: (
+       50: #3b3c3e,
+       100: #47494b,
+       200: #545558,
+       300: #606265,
+       400: #6d6f72,
+       500: #797b7f,
+       600: #939598,
+       700: #a0a2a5,
+       800: #adafb1,
+       900: #babbbe,
+       A100: #939598,
+       A200: rgb(134, 136, 140),
+       A400: #797b7f,
+       A700: #c7c8ca,
+        contrast: (
+          50: $black-87-opacity,
+          100: $black-87-opacity,
+          200: $black-87-opacity,
+          300: $black-87-opacity,
+          400: $black-87-opacity,
+          500: white,
+          600: white,
+          700: white,
+          800: $white-87-opacity,
+          900: $white-87-opacity,
+          A100: $black-87-opacity,
+          A200: white,
+          A400: white,
+          A700: white,
+        )
+    );

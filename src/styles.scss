@@ -1,42 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
-html {
-  font-size: 62.5%
-}
-
-body {
-  font-size: 1.6rem;
-  margin: 0;
-}
-
-a {
-  text-decoration: none;
-  border-bottom: .1rem solid black;
-  font-size: 1.6rem;
-
-  &:hover {
-    border-color: transparent;
-  }
-}
-
-.container {
-  max-width: 1800px;
-  margin: 1rem auto;
-  @media(min-width: 600px) {
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-  @media(min-width: 1200px) {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
-
-md-toolbar div {
-  width: 100%;
-  a {
-    color: white;
-    border-color: white;
-  }
-}
+@import './styles/style';
