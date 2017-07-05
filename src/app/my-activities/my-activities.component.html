@@ -7,24 +7,23 @@
 
 <main class="container">
   <md-tab-group>
-    <md-tab *ngFor="let item of dates">
+    <md-tab *ngFor="let date of dates">
       <ng-template md-tab-label>
-        {{item}}
+        {{date}}
       </ng-template>
 
-      <section class="section-item" *ngFor="let timetable of data?.timetable">
-        <div *ngIf="item === timetable.date && timetable.type === 'workshop'">
-          <h2>{{timetable.title }}</h2>
-          <p>Starttime: <time> {{timetable.startTime}} </time></p>
-          <p>Endtime: <time> {{timetable.endTime}} </time></p>
-          <p>{{timetable.description}}</p>
+      <section class="section-item" *ngFor="let timetableItem of data?.timetable">
+        <div *ngIf="date === timetableItem.date">
+          <h2>{{timetableItem.title}}</h2>
+          <p>Leader: {{timetableItem.wsLeader}}</p>
+          <p>Co-tutor: {{timetableItem.wsCotutor}}</p>
+          <p>Start time: <time> {{timetableItem.startTime}} </time></p>
+          <p>End time: <time> {{timetableItem.endTime}} </time></p>
+          <p>Description: {{timetableItem.description}}</p>
 
           <h3>Workshop information</h3>
-          <ul>
-            <li *ngIf="timetable.roomName">Room: {{timetable.roomName}}</li>
-            <li *ngIf="timetable.roomDescription">RoomDescription: {{timetable.roomDescription}}</li>
-          </ul>
-
+          <div *ngIf="timetableItem.roomName">Room: {{timetableItem.roomName}}</div>
+          <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div>
         </div>
       </section>
     </md-tab>

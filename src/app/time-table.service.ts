@@ -1,10 +1,10 @@
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { TimeTable } from "app/time-table";
-import { TimeTableWrapper } from "app/time-table-wrapper";
+import { TimeTable } from 'app/time-table';
+import { TimeTableWrapper } from 'app/time-table-wrapper';
 
 @Injectable()
 export class TimeTableService {
@@ -16,10 +16,10 @@ export class TimeTableService {
     return this._http.get(url)
       .map((responseData) => {
 
-        var toMap = responseData.json();
+        const toMap = responseData.json();
 
 
-        let wrapper = new TimeTableWrapper();
+        const wrapper = new TimeTableWrapper();
         wrapper.timetable = new Array<TimeTable>();
         toMap.timetable.forEach(timetable => {
           wrapper.timetable.push(this.mapTimeTable(timetable));
@@ -38,7 +38,7 @@ export class TimeTableService {
   }
 
   private mapTimeTable(obj: any): TimeTable {
-    var timetable = new TimeTable();
+    const timetable = new TimeTable();
     timetable.date = obj.date;
     timetable.title = obj.title;
     timetable.endTime = obj.end_time;

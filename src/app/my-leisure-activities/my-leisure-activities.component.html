@@ -1,3 +1,30 @@
-<div class="actionButton" [routerLink]="['/']">
-  <a [routerLink]="['/']">Back</a>
-</div>
+<md-toolbar color="primary">
+  <div fxLayout="row wrap" fxLayoutAlign="space-between">
+    <h1>My leisure activities</h1>
+    <a [routerLink]="['/']"> Back to homepage</a>
+  </div>
+</md-toolbar>
+
+<main class="container">
+  <md-tab-group>
+    <md-tab *ngFor="let date of dates">
+      <ng-template md-tab-label>
+        {{date}}
+      </ng-template>
+
+      <section class="section-item" *ngFor="let timetableItem of data?.timetable">
+        <div *ngIf="date === timetableItem.date">
+          <h2>{{timetableItem.title}}</h2>
+          <p>Start time: <time> {{timetableItem.startTime}} </time></p>
+          <p>End time: <time> {{timetableItem.endTime}} </time></p>
+          <p>Description: {{timetableItem.description}}</p>
+
+          <h3>Workshop information</h3>
+          <div *ngIf="timetableItem.roomName">Room: {{timetableItem.roomName}}</div>
+          <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div>
+        </div>
+      </section>
+    </md-tab>
+  </md-tab-group>
+</main>
+

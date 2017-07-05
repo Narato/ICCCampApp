@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
-import { TimeTableService } from '../time-table.service';
+import { Router } from '@angular/router';
 import * as _ from 'lodash';
+
+import { TimeTableService } from '../time-table.service';
 
 @Component({
   selector: 'app-my-activities',
@@ -13,29 +14,30 @@ export class MyActivitiesComponent implements OnInit {
   data: any;
   dates: any;
 
-  constructor(private router: Router,
-    private timetableService: TimeTableService) { }
+  constructor(private router: Router, private timetableService: TimeTableService) { }
 
   ngOnInit() {
-    if (localStorage.getItem('icc_campapp_username') == null) {
-      this.router.navigate(['credentials']);
+    if (localStorage.getItem('icc_campapp_username') === null) {
+      return this.router.navigate(['credentials']);
     }
 
-    this.timetableService.getTimeTable(localStorage.getItem('icc_campapp_username'),localStorage.getItem('icc_campapp_password'))
+    this.timetableService.getTimeTable(localStorage.getItem('icc_campapp_username'), localStorage.getItem('icc_campapp_password'))
+    .map((result) => {
+      const timetable = result.timetable.filter(timetableItem => timetableItem.type === 'workshop');
+      result.timetable = timetable;
+      return result;
+    })
     .subscribe((result) => {
       this.data = result;
-      let timetable = this.data.timetable;
-      console.log(result);
+      const timetable = this.data.timetable;
+      const flags = {}, output = [], length = timetable.length;
 
-      var flags = [], output = [], l = timetable.length, i;
-      for( i=0; i<l; i++) {
-          if( flags[timetable[i].date]) continue;
-          flags[timetable[i].date] = true;
-          output.push(timetable[i].date);
+      for (let i = 0; i < length; i++) {
+        if (flags[timetable[i].date]) { continue; }
+        flags[timetable[i].date] = true;
+        output.push(timetable[i].date);
       }
-
       this.dates = output;
-      console.log(this.dates);
     })
   }
 
