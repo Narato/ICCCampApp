@@ -18,7 +18,7 @@ export class MyActivitiesComponent implements OnInit {
   currentActivities: any[];
   currentActivityDateIndex: number;
 
-  constructor(private router: Router, private timetableService: TimeTableService) { 
+  constructor(private router: Router, private timetableService: TimeTableService) {
     this.showOnlyToday = true;
   }
 

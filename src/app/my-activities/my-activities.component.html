@@ -2,7 +2,7 @@
   <div fxLayout="row wrap" fxLayoutAlign="space-between">
     <a [routerLink]="['/']" class="nav-item"> Back to homepage</a>
     <h1>My workshops</h1>
-    <div *ngIf="showOnlyToday == true"> 
+    <div *ngIf="showOnlyToday == true">
     <button (click)="showAllActivities()">Show all workshops</button>
     <button (click)="selectDayBefore()" *ngIf="currentActivityDateIndex > 0">Previous day</button>
       <p *ngIf="currentActivityDateIndex === 0">First day</p>
@@ -16,16 +16,14 @@
   </div>
 </nav>-->
 <nav>
-  <div fxLayout="row wrap" fxLayoutAlign="space-between">
-    <h1>My workshops</h1>
-    <a [routerLink]="['/']" class="nav-item"> Back to homepage</a>
-  </div>
+  <a [routerLink]="['/']" class="nav-item"> Back to homepage</a>
 </nav>
 
 <main class="container" *ngIf="dates">
-  <!--only today-->    
-  <div *ngIf="showOnlyToday == true"> 
-    <button (click)="showAllActivities()">Show all workshops</button>   
+  <h1>My workshops</h1>
+  <!--only today-->
+  <div *ngIf="showOnlyToday == true">
+    <button (click)="showAllActivities()">Show all workshops</button>
     <section>
       <button (click)="selectDayBefore()" *ngIf="currentActivityDateIndex > 0">Previous day</button>
       <p *ngIf="currentActivityDateIndex === 0">First day</p>
@@ -42,14 +40,15 @@
         <p>End time:
           <time> {{timetableItem.endTime}} </time>
         </p>
+        <p>Room: {{timetableItem.roomName}}</p>
         <p>Description: {{timetableItem.description}}</p>
 
-        <h3>Workshop information</h3>
+        <!--<h3>Workshop information</h3>
         <div *ngIf="timetableItem.roomName">Room: {{timetableItem.roomName}}</div>
-        <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div>
+        <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div>-->
       </article>
     </section>
-    
+
   </div>
   <!--All workshops-->
   <div *ngIf="showOnlyToday == false">

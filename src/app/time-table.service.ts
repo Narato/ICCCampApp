@@ -44,7 +44,7 @@ export class TimeTableService {
     timetable.endTime = obj.end_time;
     timetable.description = obj.description[0].value;
     timetable.roomDescription = obj.room_description[0].value;
-    timetable.roomName = obj.roomName;
+    timetable.roomName = obj.room_name;
     timetable.startTime = obj.start_time;
     timetable.type = obj.type;
     timetable.wsCotutor = obj.ws_cotutor;
