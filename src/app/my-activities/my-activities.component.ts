@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Moment } from 'moment';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 
 import { TimeTableService } from '../time-table.service';
 
@@ -10,22 +12,23 @@ import { TimeTableService } from '../time-table.service';
   styleUrls: ['./my-activities.component.scss']
 })
 export class MyActivitiesComponent implements OnInit {
-
   data: any;
-  dates: any;
-  currentDate: any;
-  showOnlyToday: boolean;
+  dates = [];
+  currentDate: Moment;
+  showOnlyToday = true;
   currentActivities: any[];
-  currentActivityDateIndex: number;
+  currentActivityDateIndex = 0;
 
-  constructor(private router: Router, private timetableService: TimeTableService) {
-    this.showOnlyToday = true;
-  }
+  constructor(private router: Router, private timetableService: TimeTableService) {}
 
   ngOnInit() {
     if (localStorage.getItem('icc_campapp_username') === null) {
       return this.router.navigate(['credentials']);
     }
+
+    this.setCurrentDate();
+    this.setDates();
+    console.log(this.dates);
 
     this.timetableService.getTimeTable(localStorage.getItem('icc_campapp_username'), localStorage.getItem('icc_campapp_password'))
       .map((result) => {
@@ -35,64 +38,52 @@ export class MyActivitiesComponent implements OnInit {
       })
       .subscribe((result) => {
         this.data = result;
-        const timetable = this.data.timetable;
-        const flags = {}, output = [], length = timetable.length;
-
-        for (let i = 0; i < length; i++) {
-          if (flags[timetable[i].date]) { continue; }
-          flags[timetable[i].date] = true;
-          output.push(timetable[i].date);
-        }
-        this.dates = output;
-
-        this.setInitialActivities();
+        this.setCurrentActivities();
       })
   }
 
-  setInitialActivities() {
-    if (this.dates.length > 0) {
-      let today = new Date();
-      this.currentActivityDateIndex = 0;
-      this.currentDate = this.dates[0];
-      for (let date of this.dates) {
-        let datePart = date.toString().substring(date.indexOf(',') + 2, date.length);
-        let day = Number(datePart.substring(0, 2));
-        let month = Number(datePart.substring(3, 5));
-        let year = Number(datePart.substring(6, 10));
-        if (year == today.getFullYear() && month == today.getMonth() && day == today.getDate()) {
-          this.currentDate == date;
-          break;
-        }
-      }
-
-      this.currentActivities = this.data.timetable.filter(tte => tte.date == this.currentDate);
-    }
-  }
-
   selectDayBefore() {
-    // let currentDateIndex = this.dates.indexOf(this.currentDate);
-    if(this.currentActivityDateIndex > 0) {
+    if (this.currentActivityDateIndex > 0) {
       this.currentActivityDateIndex--;
       this.currentDate = this.dates[this.currentActivityDateIndex];
-      this.currentActivities = this.data.timetable.filter(tte => tte.date == this.currentDate);
+      this.setCurrentActivities();
     }
   }
 
   selectDayAfter() {
-    // let currentDateIndex = this.dates.indexOf(this.currentDate);
-    if(this.currentActivityDateIndex < this.dates.length - 1) {
+    if (this.currentActivityDateIndex < this.dates.length - 1) {
       this.currentActivityDateIndex++;
       this.currentDate = this.dates[this.currentActivityDateIndex];
-      this.currentActivities = this.data.timetable.filter(tte => tte.date == this.currentDate);
+      this.setCurrentActivities();
     }
   }
 
   showTodaysActivities() {
     this.showOnlyToday = true;
-      this.setInitialActivities();
+    this.setCurrentActivities();
   }
 
   showAllActivities() {
     this.showOnlyToday = false;
+  }
+
+  private setCurrentDate() {
+    // Todo: set correct first date
+    this.currentDate = moment('2016-07-26', 'YYYY-MM-DD');
+  }
+
+  private setDates() {
+    const date = this.currentDate.clone();
+    const nrOfDays = 9;
+
+    for (let i = 1; i <= nrOfDays; i++) {
+      this.dates.push(date.clone());
+      date.add(1, 'day');
+    }
+  }
+
+  private setCurrentActivities() {
+    const date = this.currentDate.format()
+    this.currentActivities = this.data.timetable.filter(tte => tte.date.format() === date);
   }
 }

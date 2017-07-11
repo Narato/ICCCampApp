@@ -1,8 +1,8 @@
-import { ValueObject } from "app/value-object";
+import { Moment } from 'moment';
 
 export class TimeTable {
     type: string;
-    date: string;
+    date: Moment;
     startTime: string;
     endTime: string;
     title: string;
@@ -11,5 +11,4 @@ export class TimeTable {
     wsCotutor: string;
     roomName: string;
     roomDescription: string;
-
 }

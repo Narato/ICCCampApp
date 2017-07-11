@@ -1,64 +1,48 @@
-<!--<nav>
-  <div fxLayout="row wrap" fxLayoutAlign="space-between">
-    <a [routerLink]="['/']" class="nav-item"> Back to homepage</a>
-    <h1>My workshops</h1>
-    <div *ngIf="showOnlyToday == true">
-    <button (click)="showAllActivities()">Show all workshops</button>
-    <button (click)="selectDayBefore()" *ngIf="currentActivityDateIndex > 0">Previous day</button>
-      <p *ngIf="currentActivityDateIndex === 0">First day</p>
-      <p>{{currentDate}}</p>
-      <button (click)="selectDayAfter()" *ngIf="currentActivityDateIndex < this.dates.length - 1">Next day</button>
-      <p *ngIf="currentActivityDateIndex === this.dates.length - 1">Last day</p>
-    </div>
-    <div *ngIf="showOnlyToday == false">
-      <button (click)="showTodaysActivities()">Show today's workshops</button>
-    </div>
-  </div>
-</nav>-->
 <nav>
-  <a [routerLink]="['/']" class="nav-item"> Back to homepage</a>
+  <a [routerLink]="['/']"> Back to homepage</a>
 </nav>
 
 <main class="container" *ngIf="dates">
   <h1>My workshops</h1>
   <!--only today-->
-  <div *ngIf="showOnlyToday == true">
-    <button (click)="showAllActivities()">Show all workshops</button>
-    <section>
+  <section *ngIf="showOnlyToday == true">
+    <header>
       <button (click)="selectDayBefore()" *ngIf="currentActivityDateIndex > 0">Previous day</button>
-      <p *ngIf="currentActivityDateIndex === 0">First day</p>
-      <p>{{currentDate}}</p>
+      <span *ngIf="currentActivityDateIndex === 0">First day</span>
       <button (click)="selectDayAfter()" *ngIf="currentActivityDateIndex < this.dates.length - 1">Next day</button>
-      <p *ngIf="currentActivityDateIndex === this.dates.length - 1">Last day</p>
-      <article *ngFor="let timetableItem of currentActivities">
-        <h2>{{timetableItem.title}}</h2>
-        <p>Leader: {{timetableItem.wsLeader}}</p>
-        <p>Co-tutor: {{timetableItem.wsCotutor}}</p>
-        <p>Start time:
-          <time> {{timetableItem.startTime}} </time>
-        </p>
-        <p>End time:
-          <time> {{timetableItem.endTime}} </time>
-        </p>
-        <p>Room: {{timetableItem.roomName}}</p>
-        <p>Description: {{timetableItem.description}}</p>
+      <span *ngIf="currentActivityDateIndex === this.dates.length - 1">Last day</span>
+    </header>
+    <h2>{{currentDate.format('dddd, MMMM D YYYY')}}</h2>
 
-        <!--<h3>Workshop information</h3>
-        <div *ngIf="timetableItem.roomName">Room: {{timetableItem.roomName}}</div>
-        <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div>-->
-      </article>
-    </section>
+    <div *ngIf="currentActivities?.length === 0">No workshops</div>
+    <article *ngFor="let timetableItem of currentActivities">
+      <h3>{{timetableItem.title}}</h3>
+      <p>Leader: {{timetableItem.wsLeader}}</p>
+      <p>Co-tutor: {{timetableItem.wsCotutor}}</p>
+      <p>Start time:
+        <time> {{timetableItem.startTime}} </time>
+      </p>
+      <p>End time:
+        <time> {{timetableItem.endTime}} </time>
+      </p>
+      <p>Room: {{timetableItem.roomName}}</p>
+      <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div>
+      <p>Description: {{timetableItem.description}}</p>
+    </article>
+    <footer>
+      <button (click)="showAllActivities()">Show all workshops</button>
+    </footer>
+  </section>
 
-  </div>
   <!--All workshops-->
   <div *ngIf="showOnlyToday == false">
     <button (click)="showTodaysActivities()">Show today's workshops</button>
     <section class="section-item" *ngFor="let date of dates">
-      <p>{{date}}</p>
+      <h2>{{date.format('dddd, MMMM D YYYY')}}</h2>
 
       <article *ngFor="let timetableItem of data?.timetable">
-        <div *ngIf="date === timetableItem.date">
-          <h2>{{timetableItem.title}}</h2>
+        <div *ngIf="date.format() === timetableItem.date.format()">
+          <h3>{{timetableItem.title}}</h3>
           <p>Leader: {{timetableItem.wsLeader}}</p>
           <p>Co-tutor: {{timetableItem.wsCotutor}}</p>
           <p>Start time:
@@ -67,11 +51,9 @@
           <p>End time:
             <time> {{timetableItem.endTime}} </time>
           </p>
-          <p>Description: {{timetableItem.description}}</p>
-
-          <h3>Workshop information</h3>
-          <div *ngIf="timetableItem.roomName">Room: {{timetableItem.roomName}}</div>
+          <p>Room: {{timetableItem.roomName}}</p>
           <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div>
+          <p>Description: {{timetableItem.description}}</p>
         </div>
       </article>
     </section>

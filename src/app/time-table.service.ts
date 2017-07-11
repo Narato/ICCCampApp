@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import * as moment from 'moment';
+
 import { TimeTable } from 'app/time-table';
 import { TimeTableWrapper } from 'app/time-table-wrapper';
 
@@ -39,7 +41,7 @@ export class TimeTableService {
 
   private mapTimeTable(obj: any): TimeTable {
     const timetable = new TimeTable();
-    timetable.date = obj.date;
+    timetable.date = this.mapDate(obj.date);
     timetable.title = obj.title;
     timetable.endTime = obj.end_time;
     timetable.description = obj.description[0].value;
@@ -51,5 +53,13 @@ export class TimeTableService {
     timetable.wsLeader = obj.ws_leader;
 
     return timetable;
+  }
+
+  private mapDate(dateStr: string) {
+    const datePart = dateStr.toString().substring(dateStr.indexOf(',') + 2, dateStr.length);
+    const day = Number(datePart.substring(0, 2));
+    const month = Number(datePart.substring(3, 5));
+    const year = Number(datePart.substring(6, 10));
+    return moment(`${year}-${month}-${day}`, 'YYYY-MM-DD');
   }
 }
