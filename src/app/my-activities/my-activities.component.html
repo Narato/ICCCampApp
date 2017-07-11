@@ -1,9 +1,20 @@
-<!--<md-toolbar color="primary">
+<!--<nav>
   <div fxLayout="row wrap" fxLayoutAlign="space-between">
+    <a [routerLink]="['/']" class="nav-item"> Back to homepage</a>
     <h1>My workshops</h1>
-    <a [routerLink]="['/']"> Back to homepage</a>
+    <div *ngIf="showOnlyToday == true"> 
+    <button (click)="showAllActivities()">Show all workshops</button>
+    <button (click)="selectDayBefore()" *ngIf="currentActivityDateIndex > 0">Previous day</button>
+      <p *ngIf="currentActivityDateIndex === 0">First day</p>
+      <p>{{currentDate}}</p>
+      <button (click)="selectDayAfter()" *ngIf="currentActivityDateIndex < this.dates.length - 1">Next day</button>
+      <p *ngIf="currentActivityDateIndex === this.dates.length - 1">Last day</p>
+    </div>
+    <div *ngIf="showOnlyToday == false">
+      <button (click)="showTodaysActivities()">Show today's workshops</button>
+    </div>
   </div>
-</md-toolbar>-->
+</nav>-->
 <nav>
   <div fxLayout="row wrap" fxLayoutAlign="space-between">
     <h1>My workshops</h1>
