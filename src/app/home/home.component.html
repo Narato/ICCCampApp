@@ -1,55 +1,27 @@
-<md-toolbar color="primary">
-    <div fxLayout="row wrap" fxLayoutAlign="space-between">
-      <h1>Homepage ICC-Camp</h1>
-      <a [routerLink]="['/credentials']">Login</a>
-    </div>
-</md-toolbar>
+<h1>Homepage ICC-Camp</h1>
 
 <main class="container">
-    <md-card [routerLink]="['/myActivities']" class="actionButton">
+  <nav>
+    <div>
+      <a [routerLink]="['/credentials']">Credentials</a>
+    </div>
+    <div>
       <a [routerLink]="['/myActivities']">My workshops</a>
-    </md-card>
-
-    <md-card [routerLink]="['/myLeisureActivities']" class="actionButton">
+    </div>
+    <div>
       <a [routerLink]="['/myLeisureActivities']">My leisure time activities</a>
-    </md-card>
-
-    <md-card class="actionButton">
+    </div>
+    <div>
       <a href="/assets/static1.html">Static 1</a>
-    </md-card>
-
-    <md-card class="actionButton">
+    </div>
+    <div>
       <a href="/assets/static2.html">Static 2</a>
-    </md-card>
-
-    <md-card class="actionButton">
+    </div>
+    <div>
       <a href="/assets/static3.html">Static 3</a>
-    </md-card>
-
-    <md-card class="actionButton">
+    </div>
+    <div>
       <a href="/assets/static4.html">Static 4</a>
-    </md-card>
+    </div>
+  </nav>
 </main>
-
-<!--
-<div class="actionButton">
-  Static1
-</div>
-<div class="actionButton">
-  Static2
-</div>
-<div class="actionButton">
-  Static3
-</div>
-<div class="actionButton">
-  Static4
-</div>
-<div class="actionButton" [routerLink]="['/myActivities']">
-  <a [routerLink]="['/myActivities']">My activities</a>
-</div>
-<div class="actionButton" [routerLink]="['/myLeisureActivities']">
-  <a [routerLink]="['/myLeisureActivities']">My leisure activities</a>
-</div>
-<div class="actionButton" [routerLink]="['/credentials']">
-  <a [routerLink]="['/credentials']">Credentials</a>
-</div> -->
