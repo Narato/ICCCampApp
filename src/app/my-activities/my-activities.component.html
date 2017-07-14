@@ -28,7 +28,7 @@
           <time> {{timetableItem.endTime}} </time>
         </p>
         <p>Room: {{timetableItem.roomName}}</p>
-        <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div>
+        <!-- <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div> -->
         <p>Description: {{timetableItem.description}}</p>
       </article>
     </ng-container>
@@ -55,7 +55,7 @@
             <time> {{timetableItem.endTime}} </time>
           </p>
           <p>Room: {{timetableItem.roomName}}</p>
-          <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div>
+          <!-- <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div> -->
           <p>Description: {{timetableItem.description}}</p>
         </article>
       </ng-container>
