@@ -14,10 +14,10 @@ import { TimeTableService } from '../time-table.service';
 export class MyActivitiesComponent implements OnInit {
   data: any;
   dates = [];
+  datesWithActivities: any;
   currentDate: Moment;
   showOnlyToday = true;
-  currentActivities: any[];
-  currentActivityDateIndex = 0;
+  currentActivityDateIndex: number;
 
   NR_OF_DAYS = 9;
   FIRST_DAY = '2016-07-26';
@@ -41,7 +41,7 @@ export class MyActivitiesComponent implements OnInit {
       })
       .subscribe((result) => {
         this.data = result;
-        this.setCurrentActivities();
+        this.saveActivitiesPerDate();
       }, (error) => {
         return this.router.navigate(['credentials']);
       })
@@ -51,7 +51,6 @@ export class MyActivitiesComponent implements OnInit {
     if (this.currentActivityDateIndex > 0) {
       this.currentActivityDateIndex--;
       this.currentDate = this.dates[this.currentActivityDateIndex];
-      this.setCurrentActivities();
     }
   }
 
@@ -59,50 +58,57 @@ export class MyActivitiesComponent implements OnInit {
     if (this.currentActivityDateIndex < this.dates.length - 1) {
       this.currentActivityDateIndex++;
       this.currentDate = this.dates[this.currentActivityDateIndex];
-      this.setCurrentActivities();
     }
   }
 
   showTodaysActivities() {
     this.showOnlyToday = true;
-    this.setCurrentActivities();
   }
 
   showAllActivities() {
     this.showOnlyToday = false;
   }
 
+  createDate(date: string) {
+    return moment(date, this.DATE_FORMAT);
+  }
+
+  formatDate(date: Moment) {
+    return date.format(this.DATE_FORMAT);
+  }
+
   private setDates() {
-    const date = this.createMoment(this.FIRST_DAY);
+    const date = this.createDate(this.FIRST_DAY);
 
     for (let i = 1; i <= this.NR_OF_DAYS; i++) {
-      this.dates.push(this.createMoment(date.format(this.DATE_FORMAT)));
+      this.dates.push(moment(date));
       date.add(1, 'day');
     }
   }
 
   private setCurrentDate() {
     const now = moment();
-    if (now.isSameOrBefore(this.dates[0], 'day')) {
-      this.currentDate = this.createMoment(this.dates[0].format(this.DATE_FORMAT));
+    if (now.isBefore(this.dates[0], 'day')) {
+      this.currentDate = this.dates[0];
+      this.currentActivityDateIndex = 0;
     } else if (now.isSameOrAfter(this.dates[this.dates.length - 1], 'day')) {
-      this.currentDate = this.createMoment(this.dates[this.dates.length - 1].format(this.DATE_FORMAT));
+      this.currentDate = this.dates[this.dates.length - 1];
+      this.currentActivityDateIndex = this.dates.length - 1;
     } else {
+      // go to next day after 17:00
+      if (now.hours() >= 17) {
+        now.add(1, 'day');
+      }
       this.currentDate = now;
-    }
-
-    // go to next day after 17:00
-    if (now.hours() >= 17 && now.isBefore(this.dates[this.dates.length - 1], 'day')) {
-      this.currentDate.add(1, 'day');
+      this.currentActivityDateIndex = this.dates.map(date => this.formatDate(date)).indexOf(this.formatDate(now));
     }
   }
 
-  private setCurrentActivities() {
-    const date = this.currentDate.format()
-    this.currentActivities = this.data.timetable.filter(tte => tte.date.format() === date);
-  }
-
-  private createMoment(date) {
-    return moment(date, this.DATE_FORMAT);
+  private saveActivitiesPerDate() {
+    this.datesWithActivities = {};
+    this.dates.forEach(date => {
+      const dateStr = this.formatDate(date);
+      this.datesWithActivities[dateStr] = this.data.timetable.filter(tte => this.formatDate(tte.date) === dateStr);
+    });
   }
 }

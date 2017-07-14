@@ -15,21 +15,23 @@
     </header>
     <h2>{{currentDate.format('dddd, MMMM D YYYY')}}</h2>
 
-    <div *ngIf="currentActivities?.length === 0">No workshops</div>
-    <article *ngFor="let timetableItem of currentActivities">
-      <h3>{{timetableItem.title}}</h3>
-      <p>Leader: {{timetableItem.wsLeader}}</p>
-      <p>Co-tutor: {{timetableItem.wsCotutor}}</p>
-      <p>Start time:
-        <time> {{timetableItem.startTime}} </time>
-      </p>
-      <p>End time:
-        <time> {{timetableItem.endTime}} </time>
-      </p>
-      <p>Room: {{timetableItem.roomName}}</p>
-      <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div>
-      <p>Description: {{timetableItem.description}}</p>
-    </article>
+    <ng-container *ngIf="datesWithActivities">
+      <div *ngIf="datesWithActivities[formatDate(currentDate)].length === 0">No workshops</div>
+      <article *ngFor="let timetableItem of datesWithActivities[formatDate(currentDate)]">
+        <h3>{{timetableItem.title}}</h3>
+        <p>Leader: {{timetableItem.wsLeader}}</p>
+        <p>Co-tutor: {{timetableItem.wsCotutor}}</p>
+        <p>Start time:
+          <time> {{timetableItem.startTime}} </time>
+        </p>
+        <p>End time:
+          <time> {{timetableItem.endTime}} </time>
+        </p>
+        <p>Room: {{timetableItem.roomName}}</p>
+        <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div>
+        <p>Description: {{timetableItem.description}}</p>
+      </article>
+    </ng-container>
   </section>
 
   <!--All workshops-->
@@ -40,8 +42,9 @@
     <section class="section-item" *ngFor="let date of dates">
       <h2>{{date.format('dddd, MMMM D YYYY')}}</h2>
 
-      <article *ngFor="let timetableItem of data?.timetable">
-        <ng-container *ngIf="date.format() === timetableItem.date.format()">
+      <ng-container *ngIf="datesWithActivities">
+        <div *ngIf="datesWithActivities[formatDate(date)].length === 0">No workshops</div>
+        <article *ngFor="let timetableItem of datesWithActivities[formatDate(date)]">
           <h3>{{timetableItem.title}}</h3>
           <p>Leader: {{timetableItem.wsLeader}}</p>
           <p>Co-tutor: {{timetableItem.wsCotutor}}</p>
@@ -54,8 +57,8 @@
           <p>Room: {{timetableItem.roomName}}</p>
           <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div>
           <p>Description: {{timetableItem.description}}</p>
-        </ng-container>
-      </article>
+        </article>
+      </ng-container>
     </section>
   </div>
 </main>
