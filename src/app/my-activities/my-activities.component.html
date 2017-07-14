@@ -1,9 +1,13 @@
 <nav>
   <a [routerLink]="['/']"> Back to homepage</a>
 </nav>
+<md-toolbar color="primary">
+  <div fxLayout="row wrap" fxLayoutAlign="space-between">
+  <h1>My workshops</h1>
+  </div>
+</md-toolbar>
 
 <main class="container" *ngIf="dates">
-  <h1>My workshops</h1>
   <!--only today-->
   <section *ngIf="showOnlyToday == true">
     <header>
@@ -11,6 +15,7 @@
       <span *ngIf="currentActivityDateIndex === 0">First day</span>
       <button (click)="selectDayAfter()" *ngIf="currentActivityDateIndex < this.dates.length - 1">Next day</button>
       <span *ngIf="currentActivityDateIndex === this.dates.length - 1">Last day</span>
+      <button (click)="showAllActivities()">Show all workshops</button>
     </header>
     <h2>{{currentDate.format('dddd, MMMM D YYYY')}}</h2>
 
@@ -29,19 +34,18 @@
       <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div>
       <p>Description: {{timetableItem.description}}</p>
     </article>
-    <footer>
-      <button (click)="showAllActivities()">Show all workshops</button>
-    </footer>
   </section>
 
   <!--All workshops-->
   <div *ngIf="showOnlyToday == false">
-    <button (click)="showTodaysActivities()">Show today's workshops</button>
+    <header>
+      <button (click)="showTodaysActivities()">Show today's workshops</button>
+    </header>
     <section class="section-item" *ngFor="let date of dates">
       <h2>{{date.format('dddd, MMMM D YYYY')}}</h2>
 
       <article *ngFor="let timetableItem of data?.timetable">
-        <div *ngIf="date.format() === timetableItem.date.format()">
+        <ng-container *ngIf="date.format() === timetableItem.date.format()">
           <h3>{{timetableItem.title}}</h3>
           <p>Leader: {{timetableItem.wsLeader}}</p>
           <p>Co-tutor: {{timetableItem.wsCotutor}}</p>
@@ -54,7 +58,7 @@
           <p>Room: {{timetableItem.roomName}}</p>
           <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div>
           <p>Description: {{timetableItem.description}}</p>
-        </div>
+        </ng-container>
       </article>
     </section>
   </div>

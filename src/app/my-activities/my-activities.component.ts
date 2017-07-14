@@ -28,7 +28,6 @@ export class MyActivitiesComponent implements OnInit {
 
     this.setCurrentDate();
     this.setDates();
-    console.log(this.dates);
 
     this.timetableService.getTimeTable(localStorage.getItem('icc_campapp_username'), localStorage.getItem('icc_campapp_password'))
       .map((result) => {
@@ -39,6 +38,8 @@ export class MyActivitiesComponent implements OnInit {
       .subscribe((result) => {
         this.data = result;
         this.setCurrentActivities();
+      }, (error) => {
+        return this.router.navigate(['credentials']);
       })
   }
 
