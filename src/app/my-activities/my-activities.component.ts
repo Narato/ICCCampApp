@@ -19,6 +19,10 @@ export class MyActivitiesComponent implements OnInit {
   currentActivities: any[];
   currentActivityDateIndex = 0;
 
+  NR_OF_DAYS = 9;
+  FIRST_DAY = '2016-07-26';
+  DATE_FORMAT = 'YYYY-MM-DD';
+
   constructor(private router: Router, private timetableService: TimeTableService) {}
 
   ngOnInit() {
@@ -26,8 +30,8 @@ export class MyActivitiesComponent implements OnInit {
       return this.router.navigate(['credentials']);
     }
 
-    this.setCurrentDate();
     this.setDates();
+    this.setCurrentDate();
 
     this.timetableService.getTimeTable(localStorage.getItem('icc_campapp_username'), localStorage.getItem('icc_campapp_password'))
       .map((result) => {
@@ -68,23 +72,37 @@ export class MyActivitiesComponent implements OnInit {
     this.showOnlyToday = false;
   }
 
-  private setCurrentDate() {
-    // Todo: set correct first date
-    this.currentDate = moment('2016-07-26', 'YYYY-MM-DD');
+  private setDates() {
+    const date = this.createMoment(this.FIRST_DAY);
+
+    for (let i = 1; i <= this.NR_OF_DAYS; i++) {
+      this.dates.push(this.createMoment(date.format(this.DATE_FORMAT)));
+      date.add(1, 'day');
+    }
   }
 
-  private setDates() {
-    const date = this.currentDate.clone();
-    const nrOfDays = 9;
+  private setCurrentDate() {
+    const now = moment();
+    if (now.isSameOrBefore(this.dates[0], 'day')) {
+      this.currentDate = this.createMoment(this.dates[0].format(this.DATE_FORMAT));
+    } else if (now.isSameOrAfter(this.dates[this.dates.length - 1], 'day')) {
+      this.currentDate = this.createMoment(this.dates[this.dates.length - 1].format(this.DATE_FORMAT));
+    } else {
+      this.currentDate = now;
+    }
 
-    for (let i = 1; i <= nrOfDays; i++) {
-      this.dates.push(date.clone());
-      date.add(1, 'day');
+    // go to next day after 17:00
+    if (now.hours() >= 17 && now.isBefore(this.dates[this.dates.length - 1], 'day')) {
+      this.currentDate.add(1, 'day');
     }
   }
 
   private setCurrentActivities() {
     const date = this.currentDate.format()
     this.currentActivities = this.data.timetable.filter(tte => tte.date.format() === date);
+  }
+
+  private createMoment(date) {
+    return moment(date, this.DATE_FORMAT);
   }
 }
