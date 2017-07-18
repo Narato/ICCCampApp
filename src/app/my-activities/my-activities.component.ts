@@ -42,6 +42,8 @@ export class MyActivitiesComponent implements OnInit {
       .subscribe((result) => {
         this.data = result;
         this.saveActivitiesPerDate();
+      }, (error) => {
+        return this.router.navigate(['credentials']);
       });
   }
 
