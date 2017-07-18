@@ -19,8 +19,8 @@ export class MyActivitiesComponent implements OnInit {
   showOnlyToday = true;
   currentActivityDateIndex: number;
 
-  NR_OF_DAYS = 9;
-  FIRST_DAY = '2016-07-26';
+  NR_OF_DAYS = 10;
+  FIRST_DAY = '2017-07-23';
   DATE_FORMAT = 'YYYY-MM-DD';
 
   constructor(private router: Router, private timetableService: TimeTableService) {}
