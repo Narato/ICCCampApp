@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 
-import { TimeTableService } from '../time-table.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-credentials',
@@ -14,7 +14,7 @@ export class CredentialsComponent implements OnInit {
   password = '';
   validationMessage = '';
 
-  constructor(private router: Router, private timeTableService: TimeTableService) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
     this.username = localStorage.getItem('icc_campapp_username');
@@ -22,11 +22,9 @@ export class CredentialsComponent implements OnInit {
   }
 
   saveCredentials(): void {
-    this.timeTableService.getTimeTable(this.username, this.password)
-      .subscribe((result) => {
-        if (result.timetable && result.timetable.length > 0) {
-          localStorage.setItem('icc_campapp_username', this.username);
-          localStorage.setItem('icc_campapp_password', this.password);
+    this.userService.login(this.username, this.password)
+      .subscribe((success) => {
+        if (success) {
           this.router.navigate(['/']);
         } else {
           this.validationMessage = 'The combination of your username and password are not correct. Please try again.';

@@ -1,10 +1,11 @@
-<h1>ICC-Camp</h1>
+<header>
+  <h1>ICC-Camp</h1>
+  <a *ngIf="!userService.loggedIn()" [routerLink]="['/credentials']">Login</a>
+  <a *ngIf="userService.loggedIn()" (click)="userService.logout()">Logout</a>
+</header>
 
 <main class="container">
   <nav>
-    <div>
-      <a [routerLink]="['/credentials']">Credentials</a>
-    </div>
     <div>
       <a [routerLink]="['/myActivities']">My workshops</a>
     </div>

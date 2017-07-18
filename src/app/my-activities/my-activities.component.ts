@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 
 import { TimeTableService } from '../time-table.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-my-activities',
@@ -23,10 +24,10 @@ export class MyActivitiesComponent implements OnInit {
   FIRST_DAY = '2017-07-23';
   DATE_FORMAT = 'YYYY-MM-DD';
 
-  constructor(private router: Router, private timetableService: TimeTableService) {}
+  constructor(private router: Router, private timetableService: TimeTableService, private userService: UserService) {}
 
   ngOnInit() {
-    if (localStorage.getItem('icc_campapp_username') === null) {
+    if (this.userService.loggedIn) {
       return this.router.navigate(['credentials']);
     }
 

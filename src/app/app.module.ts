@@ -12,6 +12,7 @@ import { MyActivitiesComponent } from './my-activities/my-activities.component';
 import { MyLeisureActivitiesComponent } from './my-leisure-activities/my-leisure-activities.component';
 import { CredentialsComponent } from './credentials/credentials.component';
 import { TimeTableService } from './time-table.service';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,10 @@ import { TimeTableService } from './time-table.service';
     BrowserAnimationsModule,
     FlexLayoutModule
   ],
-  providers: [TimeTableService],
+  providers: [
+    TimeTableService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
