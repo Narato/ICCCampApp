@@ -27,7 +27,7 @@ export class MyActivitiesComponent implements OnInit {
   constructor(private router: Router, private timetableService: TimeTableService, private userService: UserService) {}
 
   ngOnInit() {
-    if (this.userService.loggedIn) {
+    if (!this.userService.loggedIn) {
       return this.router.navigate(['credentials']);
     }
 
