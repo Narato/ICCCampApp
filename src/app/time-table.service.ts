@@ -14,7 +14,7 @@ export class TimeTableService {
   constructor(private _http: Http) { }
 
   getTimeTable(username: string, password: string): Observable<TimeTableWrapper> {
-    const url = `http://develop.icc-camp.info/rest/timetable?id=${username}&pw=${password}`;
+    const url = `http://www.icc-camp.info/rest/timetable?id=${username}&pw=${password}`;
     return this._http.get(url)
       .map((responseData) => {
 
