@@ -27,9 +27,6 @@ export class TimeTableService {
           wrapper.timetable.push(this.mapTimeTable(timetable));
         });
 
-        wrapper.participantFirstName = toMap.participant_first_name[0].value;
-        wrapper.participantSurname = toMap.participant_surname[0].value;
-
         return wrapper;
       })
       .catch(this.handleError);
