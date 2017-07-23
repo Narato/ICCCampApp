@@ -29,8 +29,7 @@
     <h3>Announcements</h3>
     <ul>
       <li *ngFor="let announcement of announcements">
-        <div>Announced at: {{announcement.announcedAt.format('dddd, MMMM D YYYY')}}</div>
-        <div>Content: {{announcement.content}}</div>
+        {{announcement.content}}
       </li>
     </ul>
   </div>
