@@ -30,13 +30,13 @@ export class TimeTableService {
         wrapper.participantFirstName = toMap.participant_first_name[0].value;
         wrapper.participantSurname = toMap.participant_surname[0].value;
 
-        console.log(wrapper);
         return wrapper;
       })
       .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
+    console.log(error);
     return Promise.reject(error.message || error);
   }
 
