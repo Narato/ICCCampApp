@@ -5,6 +5,12 @@
 </header>
 
 <main class="container">
+  <ul>
+    <li *ngFor="let announcement of announcements">
+      <div>Announced at: {{announcement.announcedAt.format('dddd, MMMM D YYYY')}}</div>
+      <div>Content: {{announcement.content}}</div>
+    </li>
+  </ul>
   <nav>
     <div>
       <a [routerLink]="['/myActivities']">My workshops</a>

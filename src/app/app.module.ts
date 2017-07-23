@@ -13,6 +13,7 @@ import { MyLeisureActivitiesComponent } from './my-leisure-activities/my-leisure
 import { CredentialsComponent } from './credentials/credentials.component';
 import { TimeTableService } from './time-table.service';
 import { UserService } from './user.service';
+import { AnnouncementService } from "app/announcement.service";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UserService } from './user.service';
   ],
   providers: [
     TimeTableService,
-    UserService
+    UserService,
+    AnnouncementService
   ],
   bootstrap: [AppComponent]
 })
