@@ -11,4 +11,5 @@ export class TimeTable {
     wsCotutor: string;
     roomName: string;
     roomDescription: string;
+    participants: string[];
 }

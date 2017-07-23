@@ -30,6 +30,7 @@ export class TimeTableService {
         wrapper.participantFirstName = toMap.participant_first_name[0].value;
         wrapper.participantSurname = toMap.participant_surname[0].value;
 
+        console.log(wrapper);
         return wrapper;
       })
       .catch(this.handleError);
@@ -51,6 +52,7 @@ export class TimeTableService {
     timetable.type = obj.type;
     timetable.wsCotutor = obj.ws_cotutor;
     timetable.wsLeader = obj.ws_leader;
+    timetable.participants = obj.participants;
 
     return timetable;
   }
