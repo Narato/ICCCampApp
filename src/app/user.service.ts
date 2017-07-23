@@ -15,7 +15,7 @@ export class UserService {
       return Observable.of(true);
     } else {
       return this.timeTableService.getTimeTable(username, password).map((result) => {
-        if (result.participantSurname && result.participantSurname.length > 0) {
+        if (result.participantSurname && result.participantSurname.length > 0 || result.staffMemberSurname && result.staffMemberSurname.length > 0) {
           localStorage.setItem('icc_campapp_username', username);
           localStorage.setItem('icc_campapp_password', password);
           return true;

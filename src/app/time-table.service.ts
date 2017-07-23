@@ -27,6 +27,17 @@ export class TimeTableService {
           wrapper.timetable.push(this.mapTimeTable(timetable));
         });
 
+        if (toMap.participant_first_name && toMap.participant_surname) {
+          wrapper.participantFirstName = toMap.participant_first_name[0].value;
+          wrapper.participantSurname = toMap.participant_surname[0].value;
+        }
+
+        if (toMap.staff_first_name && toMap.staff_surname) {
+          wrapper.staffMemberFirstName = toMap.staff_first_name[0].value;
+          wrapper.staffMemberSurname = toMap.staff_surname[0].value;
+        }
+
+
         return wrapper;
       })
       .catch(this.handleError);
