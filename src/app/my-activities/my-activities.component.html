@@ -30,7 +30,7 @@
         <p>Room: {{timetableItem.roomName}}</p>
         <!-- <div *ngIf="timetableItem.roomDescription">RoomDescription: <span [outerHTML]="timetableItem.roomDescription"></span></div> -->
         <p>Description: {{timetableItem.description}}</p>
-        <p>Participants: {{timetableItem.participants}}</p>
+        <p *ngIf="isTutor()">Participants: {{timetableItem.participants}}</p>
       </article>
     </ng-container>
   </section>
