@@ -78,6 +78,10 @@ export class MyActivitiesComponent implements OnInit {
     return date.format(this.DATE_FORMAT);
   }
 
+  isTutor(){
+    return this.userService.isTutor;
+  }
+
   private setDates() {
     const date = this.createDate(this.FIRST_DAY);
 
