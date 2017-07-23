@@ -30,7 +30,6 @@ export class CredentialsComponent implements OnInit {
           this.validationMessage = 'The combination of your username and password are not correct. Please try again.';
         }
       }, (error) => {
-        console.log(error);
         this.validationMessage = 'The combination of your username and password are not correct. Please try again.';
       });
   }
