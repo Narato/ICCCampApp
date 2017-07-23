@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   constructor(public userService: UserService, private announcementService: AnnouncementService) { }
 
   ngOnInit(): void {
-    console.log("in homecomponent");
     this.setAnnouncements();  
   }
 

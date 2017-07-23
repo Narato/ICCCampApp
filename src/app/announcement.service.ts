@@ -28,7 +28,6 @@ export class AnnouncementService {
     }
 
     private handleError(error: any): Promise<any> {
-        console.log(error);
         return Promise.reject(error.message || error);
     }
 }
