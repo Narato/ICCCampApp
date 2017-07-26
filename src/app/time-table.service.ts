@@ -14,7 +14,7 @@ export class TimeTableService {
   constructor(private _http: Http) { }
 
   getTimeTable(username: string, password: string): Observable<TimeTableWrapper> {
-    const url = `http://www.icc-camp.info/rest/timetable?id=${username}&pw=${password}`;
+    const url = `http://www.icc-camp.info/rest/timetable?id=${username}&pw=${password}&timestamp=${new Date().getTime()}`;
     return this._http.get(url)
       .map((responseData) => {
 
@@ -43,11 +43,11 @@ export class TimeTableService {
       .catch(this.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
+  handleError(error: any): Promise<any> {
     return Promise.reject(error.message || error);
   }
 
-  private mapTimeTable(obj: any): TimeTable {
+  mapTimeTable(obj: any): TimeTable {
     const timetable = new TimeTable();
     timetable.date = this.mapDate(obj.date);
     timetable.title = obj.title;
@@ -64,7 +64,7 @@ export class TimeTableService {
     return timetable;
   }
 
-  private mapDate(dateStr: string) {
+  mapDate(dateStr: string) {
     const datePart = dateStr.toString().substring(dateStr.indexOf(',') + 2, dateStr.length);
     const day = Number(datePart.substring(0, 2));
     const month = Number(datePart.substring(3, 5));
