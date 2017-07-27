@@ -19,8 +19,8 @@
       <div *ngIf="datesWithActivities[formatDate(currentDate)].length === 0">No workshops</div>
       <article *ngFor="let timetableItem of datesWithActivities[formatDate(currentDate)]">
         <h3>{{timetableItem.title}}</h3>
-        <p>Leader: {{timetableItem.wsLeader}}</p>
-        <p>Co-tutor: {{timetableItem.wsCotutor}}</p>
+        <p *ngIf="timetableItem.wsLeader">Leader: {{timetableItem.wsLeader}}</p>
+        <p *ngIf="timetableItem.wsCotutor">Co-tutor: {{timetableItem.wsCotutor}}</p>
         <p>Start time:
           <time> {{timetableItem.startTime}} </time>
         </p>
@@ -47,8 +47,8 @@
         <div *ngIf="datesWithActivities[formatDate(date)].length === 0">No workshops</div>
         <article *ngFor="let timetableItem of datesWithActivities[formatDate(date)]">
           <h3>{{timetableItem.title}}</h3>
-          <p>Leader: {{timetableItem.wsLeader}}</p>
-          <p>Co-tutor: {{timetableItem.wsCotutor}}</p>
+          <p *ngIf="timetableItem.wsLeader">Leader: {{timetableItem.wsLeader}}</p>
+          <p *ngIf="timetableItem.wsCotutor">Co-tutor: {{timetableItem.wsCotutor}}</p>
           <p>Start time:
             <time> {{timetableItem.startTime}} </time>
           </p>
