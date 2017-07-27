@@ -7,14 +7,16 @@ import * as moment from 'moment';
 
 import { TimeTable } from 'app/time-table';
 import { TimeTableWrapper } from 'app/time-table-wrapper';
+import { LoggingService } from "app/logging.service";
 
 @Injectable()
 export class TimeTableService {
 
-  constructor(private _http: Http) { }
+  constructor(private _http: Http, private loggingService: LoggingService) { }
 
   getTimeTable(username: string, password: string): Observable<TimeTableWrapper> {
     const url = `http://www.icc-camp.info/rest/timetable?id=${username}&pw=${password}&timestamp=${new Date().getTime()}`;
+    this.loggingService.log(url);
     return this._http.get(url)
       .map((responseData) => {
 
@@ -44,6 +46,7 @@ export class TimeTableService {
   }
 
   handleError(error: any): Promise<any> {
+    this.loggingService.log(error);
     return Promise.reject(error.message || error);
   }
 

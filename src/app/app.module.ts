@@ -1,6 +1,6 @@
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -14,6 +14,8 @@ import { CredentialsComponent } from './credentials/credentials.component';
 import { TimeTableService } from './time-table.service';
 import { UserService } from './user.service';
 import { AnnouncementService } from "app/announcement.service";
+import { AppInsightsErrorHandler } from "app/app-insights-error-handler";
+import { LoggingService } from "app/logging.service";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AnnouncementService } from "app/announcement.service";
   providers: [
     TimeTableService,
     UserService,
-    AnnouncementService
+    AnnouncementService,
+    {provide: ErrorHandler, useClass: AppInsightsErrorHandler},
+    LoggingService
   ],
   bootstrap: [AppComponent]
 })
