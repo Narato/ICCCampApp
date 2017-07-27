@@ -22,7 +22,7 @@ export class CredentialsComponent implements OnInit {
   }
 
   saveCredentials(): void {
-    this.userService.login(this.username, this.password)
+    this.userService.login(this.username.trim(), this.password.trim())
       .subscribe((success) => {
         if (success) {
           this.router.navigate(['/']);
